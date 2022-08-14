@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Hero from "../components/Hero";
+import Services from "../components/Services";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       {/* body */}
       <main className="py-[1rem] px-[2rem]">
         <Hero />
+        <Services />
       </main>
     </div>
   );

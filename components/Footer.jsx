@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default () => {
   return (
-    <footer className="flex flex-col gap-[3rem] mt-[6rem] items-center justify-center bg-gradient-to-bl from-pink to-gray py-[2rem]">
+    <footer className="flex flex-col gap-[3rem] mt-[6rem] items-center justify-center bg-gradient-to-bl from-pink to-red py-[2rem]">
       <span className="text-themeRed font-bold">ALL RIGHT RESERVED</span>
 
       {/* Social Icons */}

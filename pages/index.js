@@ -3,17 +3,17 @@ import Hero from "../components/Hero";
 import Services from "../components/Services";
 import Menu from "../components/Menu";
 import { client } from "../lib/client";
+import { motion } from "framer-motion"
 
 export default function Home({ pizzas }) {
 
   return (
-    <div>
+    <motion.div initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}>
       <Head>
-        <title>FUDO</title>
-
         <meta name="description" content="Food delivery website" />
-        <meta name="author" content="Olawoyin Daniel" />
-        <link rel="icon" href="/Logo.png" />
       </Head>
       {/* body */}
       <main className="py-[1rem] px-[2rem]">
@@ -21,7 +21,7 @@ export default function Home({ pizzas }) {
         <Services />
         <Menu pizzas={pizzas} />
       </main>
-    </div>
+    </motion.div>
   );
 }
 

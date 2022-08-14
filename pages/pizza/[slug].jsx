@@ -4,7 +4,10 @@ import { RightArrow } from "../../assets/arrowRight.png";
 import { BsFillCaretLeftFill, BsFillCaretRightFill } from "react-icons/bs";
 import Button from "../../components/Button";
 import Image from "next/image";
+import Head from "next/head";
+
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default ({ pizza }) => {
   const src = urlFor(pizza.image).url();
@@ -12,7 +15,16 @@ export default ({ pizza }) => {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="flex p-[2rem] gap-[5rem] mt-[3rem]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      className="flex p-[2rem] gap-[5rem] mt-[3rem]"
+    >
+      <Head>
+        <title>{pizza.name}</title>
+      </Head>
       <div className="relative w-[40%] h-[25rem] overflow-hidden rounded-[2rem]">
         <Image
           loader={() => src}
@@ -90,7 +102,7 @@ export default ({ pizza }) => {
           content="Add to Cart"
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

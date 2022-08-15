@@ -2,8 +2,13 @@ import Image from "next/image";
 import Logo from "../assets/Logo.png";
 import Link from "next/link";
 import { AiOutlineShopping } from "react-icons/ai";
+import { useStore } from "../store/store";
 
 export default () => {
+  const state = useStore((state) => state);
+  console.log(state);
+
+  const items = useStore((state) => state.cart.pizzas.length);
   return (
     <header className="flex items-center justify-between p-[1rem]">
       {/* Logo */}
@@ -29,7 +34,7 @@ export default () => {
       <div className="relative cursor-pointer z-[99]">
         <AiOutlineShopping size={35} color="#2E2E2E" />
         <div className="absolute grid place-items-center rounded-full top-0 right-[-0.5rem] bg-themeRed text-white w-[20px] h-[20px] text-[12px] ">
-          1
+          {items}
         </div>
       </div>
     </header>

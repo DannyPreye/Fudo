@@ -1,18 +1,32 @@
-import { client, urlFor } from "../../lib/client";
-import { LeftArrow } from "../../assets/arrowLeft.png";
-import { RightArrow } from "../../assets/arrowRight.png";
-import { BsFillCaretLeftFill, BsFillCaretRightFill } from "react-icons/bs";
-import Button from "../../components/Button";
-import Image from "next/image";
-import Head from "next/head";
+import { client, urlFor } from '../../lib/client';
+import { LeftArrow } from '../../assets/arrowLeft.png';
+import { RightArrow } from '../../assets/arrowRight.png';
+import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs';
+import Button from '../../components/Button';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import Image from 'next/image';
+import Head from 'next/head';
+
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useStore } from '../../store/store';
 
 export default ({ pizza }) => {
   const src = urlFor(pizza.image).url();
   const [size, setSize] = useState(1);
   const [quantity, setQuantity] = useState(1);
+
+  // Add to cart
+
+  const addPizza = useStore((state) => state.addPizza);
+  const addToCart = () => {
+    addPizza({
+      ...pizza,
+      price: pizza.price[size],
+      quantity: quantity,
+      size: size,
+    });
+  };
 
   return (
     <motion.div
@@ -52,7 +66,7 @@ export default ({ pizza }) => {
             <div
               onClick={() => setSize(0)}
               className={`${
-                size == 0 && "bg-themeRed text-white cursor-pointer"
+                size == 0 && 'bg-themeRed text-white cursor-pointer'
               }flex items-center justify-center py-[0.3rem] px-[1.5rem] border-[2px] border-themeRed rounded-[2rem]  hover:bg-themeRed hover:text-white cursor-pointer`}
             >
               Small
@@ -60,7 +74,7 @@ export default ({ pizza }) => {
             <div
               onClick={() => setSize(1)}
               className={`${
-                size == 1 && "bg-themeRed text-white cursor-pointer"
+                size == 1 && 'bg-themeRed text-white cursor-pointer'
               }flex items-center justify-center py-[0.3rem] px-[1.5rem] border-[2px] border-themeRed rounded-[2rem]  hover:bg-themeRed hover:text-white cursor-pointer`}
             >
               Medium
@@ -68,7 +82,7 @@ export default ({ pizza }) => {
             <div
               onClick={() => setSize(2)}
               className={`${
-                size == 2 && "bg-themeRed text-white cursor-pointer"
+                size == 2 && 'bg-themeRed text-white cursor-pointer'
               }flex items-center justify-center py-[0.3rem] px-[1.5rem] border-[2px] border-themeRed rounded-[2rem]  hover:bg-themeRed hover:text-white cursor-pointer`}
             >
               Large
@@ -98,6 +112,7 @@ export default ({ pizza }) => {
         </div>
         {/* Button */}
         <Button
+          onClick={addToCart}
           className="px-[1rem] py-[.5rem] font-normal text-[1rem]"
           content="Add to Cart"
         />
@@ -113,12 +128,12 @@ export async function getStaticPaths() {
 
   return {
     paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: "blocking",
+    fallback: 'blocking',
   };
 }
 
 export async function getStaticProps(context) {
-  const { slug = "" } = context.params;
+  const { slug = '' } = context.params;
   const pizza = await client.fetch(
     `*[_type == "pizza" && slug.current == '${slug}'][0]`
   );

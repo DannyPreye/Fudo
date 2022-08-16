@@ -1,12 +1,11 @@
-import Image from "next/image";
-import Logo from "../assets/Logo.png";
-import Link from "next/link";
-import { AiOutlineShopping } from "react-icons/ai";
-import { useStore } from "../store/store";
+import Image from 'next/image';
+import Logo from '../assets/Logo.png';
+import Link from 'next/link';
+import { AiOutlineShopping } from 'react-icons/ai';
+import { useStore } from '../store/store';
 
 export default () => {
   const state = useStore((state) => state);
-  console.log(state);
 
   const items = useStore((state) => state.cart.pizzas.length);
   return (
@@ -31,12 +30,14 @@ export default () => {
       </div>
 
       {/* Right Side */}
-      <div className="relative cursor-pointer z-[99]">
-        <AiOutlineShopping size={35} color="#2E2E2E" />
-        <div className="absolute grid place-items-center rounded-full top-0 right-[-0.5rem] bg-themeRed text-white w-[20px] h-[20px] text-[12px] ">
-          {items}
+      <Link href={'/cart'}>
+        <div className="relative cursor-pointer z-[99]">
+          <AiOutlineShopping size={35} color="#2E2E2E" />
+          <div className="absolute grid place-items-center rounded-full top-0 right-[-0.5rem] bg-themeRed text-white w-[20px] h-[20px] text-[12px] ">
+            {items}
+          </div>
         </div>
-      </div>
+      </Link>
     </header>
   );
 };

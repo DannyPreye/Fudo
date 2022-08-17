@@ -2,9 +2,17 @@ import Image from 'next/image';
 import Logo from '../assets/Logo.png';
 import Link from 'next/link';
 import { AiOutlineShopping } from 'react-icons/ai';
+import { BsReceipt } from 'react-icons/bs';
 import { useStore } from '../store/store';
+import { useEffect, useState } from 'react';
 
 export default () => {
+  const [order, setOrder] = useState('');
+
+  useEffect(() => {
+    setOrder(localStorage.getItem('order'));
+  }, []);
+
   const state = useStore((state) => state);
 
   const items = useStore((state) => state.cart.pizzas.length);
@@ -30,14 +38,32 @@ export default () => {
       </div>
 
       {/* Right Side */}
-      <Link href={'/cart'}>
-        <div className="relative cursor-pointer z-[99]">
-          <AiOutlineShopping size={35} color="#2E2E2E" />
-          <div className="absolute grid place-items-center rounded-full top-0 right-[-0.5rem] bg-themeRed text-white w-[20px] h-[20px] text-[12px] ">
-            {items}
+      <div className="flex gap-[1rem]">
+        <Link href={'/cart'}>
+          <div
+            className="relative cursor-pointer z-[99]"
+            title="goto cart page"
+          >
+            <AiOutlineShopping size={35} color="#2E2E2E" />
+            <div className="absolute grid place-items-center rounded-full top-0 right-[-0.5rem] bg-themeRed text-white w-[20px] h-[20px] text-[12px] ">
+              {items}
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+
+        {order && (
+          <Link href={`/order/${order}`}>
+            <div className="relative cursor-pointer" title="go order page ">
+              <BsReceipt size={35} color="#2E2E2E" />
+              {order !== '' && (
+                <div className="absolute grid place-items-center rounded-full top-0 right-[-0.5rem] bg-themeRed text-white w-[20px] h-[20px] text-[12px] ">
+                  {1}
+                </div>
+              )}
+            </div>
+          </Link>
+        )}
+      </div>
     </header>
   );
 };

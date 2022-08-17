@@ -5,6 +5,7 @@ import Cooking from '../../assets/cooking.png';
 import Onway from '../../assets/onway.png';
 import { BsBoxSeam } from 'react-icons/bs';
 import { client } from '../../lib/client';
+import { useEffect } from 'react';
 
 export const getServerSideProps = async ({ params }) => {
   const query = `*[_type == 'order' && _id == '${params.id}']`;
@@ -18,6 +19,12 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default function Orders({ order }) {
+  useEffect(() => {
+    if (order.status > 3) {
+      localStorage.clear();
+    }
+  }, [order]);
+
   return (
     <div className=" flex flex-col gap-[4rem mt-[3rem] items-center justify-center">
       <span className="font-[600] text-[2rem]">Order in Process</span>
@@ -73,6 +80,11 @@ export default function Orders({ order }) {
               <Image src={Spinner} alt="" />
             </div>
           )}
+          {order.status > 1 && (
+            <span className=" text-white p-[.5rem] bg-green rounded-[1rem]  text-[.8rem]">
+              Completed
+            </span>
+          )}
         </div>
 
         <div className="flex flex-col gap-[2rem] w-[3rem] relative items-center">
@@ -82,6 +94,11 @@ export default function Orders({ order }) {
             <div className=" absolute left-[-1.5rem] top-[-1.5rem] w-[6rem]">
               <Image src={Spinner} alt="" />
             </div>
+          )}
+          {order.status > 2 && (
+            <span className=" text-white p-[.5rem] bg-green rounded-[1rem]  text-[.8rem]">
+              Completed
+            </span>
           )}
         </div>
 
@@ -97,6 +114,11 @@ export default function Orders({ order }) {
             <div className=" absolute left-[-1.5rem] top-[-1.5rem] w-[6rem]">
               <Image src={Spinner} alt="" />
             </div>
+          )}
+          {order.status > 3 && (
+            <span className=" text-white p-[.5rem] bg-green rounded-[1rem]  text-[.8rem]">
+              Completed
+            </span>
           )}
         </div>
       </div>

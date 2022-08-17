@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useDisclosure } from '@chakra-ui/react';
 import { useStore } from '../store/store';
 import { urlFor } from '../lib/client';
-
+import { createOrder } from '../lib/orderHandler';
 import { motion } from 'framer-motion';
 
 import Button from '../components/Button';
@@ -14,6 +14,7 @@ export default function Cart() {
   const CartData = useStore((state) => state.cart);
   const removePizza = useStore((state) => state.removePizza);
   const [paymentMethod, setPaymentMethod] = useState(null);
+  const resetCart = useStore((state) => state.resetCart);
 
   const handleRemove = (i) => {
     removePizza(i);
@@ -28,14 +29,30 @@ export default function Cart() {
     typeof window !== 'undefined' && localStorage.setItem('total', total());
   };
 
-  const handleInput = (e) => {
+  const handleInputPhone = (e) => {
     setFormData((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
-  const handleSumit = (e) => {
+  const handleInputName = (e) => {
+    setFormData((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+  const handleInputAddress = (e) => {
+    setFormData((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+  const handleSumit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    total = total();
+    const id = await createOrder({ ...formData, total, paymentMethod });
+    resetCart();
+    setIsOpen(false);
+    {
+      typeof window !== 'undefined' && localStorage.setItem('order', id);
+    }
   };
 
   return (
@@ -167,7 +184,7 @@ export default function Cart() {
                 Name <span>*</span>
               </label>
               <input
-                onChange={handleInput}
+                onChange={handleInputName}
                 type="text"
                 required
                 id="name"
@@ -183,7 +200,7 @@ export default function Cart() {
                 Address
               </label>
               <textarea
-                onChange={handleInput}
+                onChange={handleInputAddress}
                 name="address"
                 id=""
                 cols="8"
@@ -200,8 +217,8 @@ export default function Cart() {
                 Phone *
               </label>
               <input
-                // onChange={handleInput}
-                name="phoneNo"
+                onChange={handleInputPhone}
+                name="phone"
                 required
                 type="text"
                 id="name"

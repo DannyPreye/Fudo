@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useDisclosure } from '@chakra-ui/react';
 import { useStore } from '../store/store';
@@ -9,6 +10,7 @@ import { motion } from 'framer-motion';
 import Button from '../components/Button';
 
 export default function Cart() {
+  const router = useRouter();
   const [formData, setFormData] = useState({});
   const [isOpen, setIsOpen] = useState(false);
   const CartData = useStore((state) => state.cart);
@@ -53,6 +55,7 @@ export default function Cart() {
     {
       typeof window !== 'undefined' && localStorage.setItem('order', id);
     }
+    router.push(`/order/${id}`);
   };
 
   return (

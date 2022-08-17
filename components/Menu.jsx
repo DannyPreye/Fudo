@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { urlFor } from "../lib/client";
-import Link from "next/link";
+import Image from 'next/image';
+import { urlFor } from '../lib/client';
+import Link from 'next/link';
 
 export default ({ pizzas }) => {
   return (
@@ -17,7 +17,7 @@ export default ({ pizzas }) => {
           const src = urlFor(pizza.image).url();
           return (
             <div
-              key={id}
+              key={'d' + id}
               className="flex flex-col items-start justify-center gap-[.5rem] text-[1.2rem] font-bold"
             >
               <Link href={`./pizza/${pizza.slug.current}`}>

@@ -11,7 +11,8 @@ export default function Home({ pizzas }) {
     <motion.div initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 2 }}>
+      transition={{ duration: 2 }}
+    >
       <Head>
         <meta name="description" content="Food delivery website" />
       </Head>

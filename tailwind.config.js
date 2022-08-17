@@ -12,7 +12,8 @@ module.exports = {
         "themeRed": "#F54748",
         "themeBlack": "#2E2E2E",
         "pink": "#FDECEC",
-        "gray": "#828282"
+        "gray": "#828282",
+        "green": "	#7CFC00"
       },
     },
   },

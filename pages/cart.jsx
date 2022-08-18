@@ -15,7 +15,7 @@ export default function Cart() {
   const [isOpen, setIsOpen] = useState(false);
   const CartData = useStore((state) => state.cart);
   const removePizza = useStore((state) => state.removePizza);
-  const [paymentMethod, setPaymentMethod] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState();
   const resetCart = useStore((state) => state.resetCart);
 
   const handleRemove = (i) => {
@@ -29,6 +29,22 @@ export default function Cart() {
     setIsOpen(true);
     setPaymentMethod(0);
     typeof window !== 'undefined' && localStorage.setItem('total', total());
+  };
+
+  const handleCheckOut = async () => {
+    typeof window !== 'undefined' && localStorage.setItem('total', total());
+    setPaymentMethod(1);
+    const response = await fetch('/api/stripe', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(CartData.pizzas),
+    });
+
+    if (response.status === 500) return;
+    const data = await response.json();
+    router.push(data.url);
   };
 
   const handleInputPhone = (e) => {
@@ -49,6 +65,7 @@ export default function Cart() {
   const handleSumit = async (e) => {
     e.preventDefault();
     total = total();
+    console.log(typeof paymentMethod);
     const id = await createOrder({ ...formData, total, paymentMethod });
     resetCart();
     setIsOpen(false);
@@ -147,7 +164,11 @@ export default function Cart() {
             content="Pay on Delivery"
             onClick={handleOnDelivery}
           />
-          <Button className={'text-[0.8rem] p-[0.6rem]'} content="Pay Now" />
+          <Button
+            className={'text-[0.8rem] p-[0.6rem]'}
+            content="Pay Now"
+            onClick={handleCheckOut}
+          />
         </div>
       </div>
 

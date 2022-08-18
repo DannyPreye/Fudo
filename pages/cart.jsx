@@ -15,7 +15,10 @@ export default function Cart() {
   const [isOpen, setIsOpen] = useState(false);
   const CartData = useStore((state) => state.cart);
   const removePizza = useStore((state) => state.removePizza);
-  const [paymentMethod, setPaymentMethod] = useState();
+  const [paymentMethod, setPaymentMethod] = useState(
+    typeof window !== 'undefined' && localStorage.getItem('order')
+  );
+  const [order, setOrder] = useState();
   const resetCart = useStore((state) => state.resetCart);
 
   const handleRemove = (i) => {
@@ -158,18 +161,23 @@ export default function Cart() {
             <span>$ {total()}</span>
           </div>
         </div>
-        <div className="flex gap-[1rem]">
-          <Button
-            className=" text-[0.8rem] p-[0.6rem] bg-tranparent text-themeRed border-[2px] "
-            content="Pay on Delivery"
-            onClick={handleOnDelivery}
-          />
-          <Button
-            className={'text-[0.8rem] p-[0.6rem]'}
-            content="Pay Now"
-            onClick={handleCheckOut}
-          />
-        </div>
+
+        {!order && CartData.pizzas.length > 0 ? (
+          <div className="flex gap-[1rem]">
+            <Button
+              className=" text-[0.8rem] p-[0.6rem] bg-tranparent text-themeRed border-[2px] "
+              content="Pay on Delivery"
+              onClick={handleOnDelivery}
+            />
+            <Button
+              className={'text-[0.8rem] p-[0.6rem]'}
+              content="Pay Now"
+              onClick={handleCheckOut}
+            />
+          </div>
+        ) : (
+          ''
+        )}
       </div>
 
       {/* Modal */}

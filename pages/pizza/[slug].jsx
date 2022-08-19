@@ -1,4 +1,7 @@
+import React from 'react';
+
 import { client, urlFor } from '../../lib/client';
+
 import { LeftArrow } from '../../assets/arrowLeft.png';
 import { RightArrow } from '../../assets/arrowRight.png';
 import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs';

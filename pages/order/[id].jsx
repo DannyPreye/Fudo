@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { FaMoneyBillAlt } from 'react-icons/fa';
 import Image from 'next/image';
 import Spinner from '../../assets/spinner.svg';
@@ -5,7 +6,6 @@ import Cooking from '../../assets/cooking.png';
 import Onway from '../../assets/onway.png';
 import { BsBoxSeam } from 'react-icons/bs';
 import { client } from '../../lib/client';
-import { useEffect } from 'react';
 
 export const getServerSideProps = async ({ params }) => {
   const query = `*[_type == 'order' && _id == '${params.id}']`;

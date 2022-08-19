@@ -1,9 +1,11 @@
+import { AnimatePresence } from "framer-motion";
+
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 import "../styles/globals.css";
 import Head from "next/head";
 import { ChakraProvider } from '@chakra-ui/react'
-import { AnimatePresence } from "framer-motion";
+
 
 function MyApp({ Component, pageProps }) {
   return (

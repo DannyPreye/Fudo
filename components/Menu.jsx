@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Image from 'next/image';
 import { urlFor } from '../lib/client';
 import Link from 'next/link';

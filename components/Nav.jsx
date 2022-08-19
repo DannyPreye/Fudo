@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Image from 'next/image';
 import Logo from '../assets/Logo.png';
 import Link from 'next/link';

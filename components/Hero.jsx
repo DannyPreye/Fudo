@@ -1,9 +1,11 @@
-import Image from "next/image";
-import Cherry from "../assets/Cherry.png";
-import HeroImage from "../assets/HeroImage.png";
-import Pizza1 from "../assets/p1.jpg";
-import Button from "./Button";
-import { BsTelephone } from "react-icons/bs";
+import React from 'react';
+
+import Image from 'next/image';
+import Cherry from '../assets/Cherry.png';
+import HeroImage from '../assets/HeroImage.png';
+import Pizza1 from '../assets/p1.jpg';
+import Button from './Button';
+import { BsTelephone } from 'react-icons/bs';
 
 export default () => {
   return (
@@ -25,7 +27,7 @@ export default () => {
           Our Mission is to filling your tummy with delicious food and with free
           delivery
         </span>
-        <Button content={"Get Started"} className="px-[2.5rem] py-[1rem]" />
+        <Button content={'Get Started'} className="px-[2.5rem] py-[1rem]" />
       </div>
 
       {/* Rigth Side */}

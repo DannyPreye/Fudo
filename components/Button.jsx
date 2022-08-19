@@ -1,3 +1,4 @@
+import React from 'react';
 export default ({ content, className, onClick }) => (
   <button
     onClick={onClick}

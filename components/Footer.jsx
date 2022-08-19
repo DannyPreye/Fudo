@@ -1,6 +1,8 @@
-import { BsFacebook, BsGithub, BsInstagram } from "react-icons/bs";
-import Logo from "../assets/Logo.png";
-import Image from "next/image";
+import React from 'react';
+
+import { BsFacebook, BsGithub, BsInstagram } from 'react-icons/bs';
+import Logo from '../assets/Logo.png';
+import Image from 'next/image';
 
 export default () => {
   return (

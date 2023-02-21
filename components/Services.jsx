@@ -7,14 +7,14 @@ import Featutes from './Featutes';
 export default () => {
   return (
     <section className="mt-[1rem]">
-      <div className="flex flex-col font-bold justify-center items-center">
+      <div className="flex flex-col font-bold justify-center items-center mt-12 ">
         <span className="text-themeRed text-[1rem]">WHAT WE SERVE</span>
         <span className="text-[2rem]">Your Favourite Food</span>
         <span className="text-[2rem]">Delivery Partner</span>
       </div>
 
       {/* Features */}
-      <div className="flex mt-[3rem] gap-[3rem] items-center justify-center">
+      <div className="flex flex-wrap mt-[3rem] gap-[3rem] items-center justify-center">
         <Featutes src={s1}>
           <span className="font-bold">Easy to Order</span>
           <span className="text-gray break-words w-[20rem] text-center">

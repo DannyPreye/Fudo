@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Logo from '../assets/Logo.png';
 import Link from 'next/link';
 import { AiOutlineShopping } from 'react-icons/ai';
+import { MdRestaurantMenu, MdMenuOpen } from 'react-icons/md';
 import { BsReceipt } from 'react-icons/bs';
 import { useStore } from '../store/store';
 import { useEffect, useState } from 'react';
@@ -18,16 +19,17 @@ export default () => {
   const state = useStore((state) => state);
 
   const items = useStore((state) => state.cart.pizzas.length);
+  const [openMenu, setOpenMenu] = useState(false);
   return (
-    <header className="flex items-center justify-between p-[1rem]">
+    <header className="flex items-center justify-between p-[1rem] relative">
       {/* Logo */}
-      <div className="flex gap-[0.5rem]">
+      <div className="flex gap-[0.5rem] items-center">
         <Image src={Logo} alt="" width={50} height={50} />
-        <h1 className="font-[800] text-[1.5rem]">Fudo</h1>
+        <h1 className="font-[800] text-[1rem] lg:text-[1.5rem]">Fudo</h1>
       </div>
 
       {/* Menu Items */}
-      <div className="flex gap-[2rem] justify-center z-[99]">
+      <div className="lg:flex gap-[2rem] justify-center z-[99] hidden ">
         <Link href="/">
           <a className="hover:text-themeRed font-[700]"> Home</a>
         </Link>
@@ -65,6 +67,13 @@ export default () => {
             </div>
           </Link>
         )}
+      </div>
+      <div
+        onClick={() => setOpenMenu((prev) => !prev)}
+        className="text-[1.5rem] block lg:hidden cursor-pointer duration-1000"
+      >
+        <MdRestaurantMenu className={openMenu ? 'block' : 'hidden'} />
+        <MdMenuOpen className={openMenu ? 'hidden' : 'block'} />
       </div>
     </header>
   );

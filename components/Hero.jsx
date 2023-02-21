@@ -11,35 +11,37 @@ export default () => {
   return (
     <section className="relative flex">
       {/* Left Side  */}
-      <div className="flex flex-col gap-[2rem]">
+      <div className="flex flex-col gap-[2rem] w-full lg:w-fit items-center lg:items-start">
         <div className="flex items-center justify-center w-fit bg-pink  mt-[3rem]  p-[1rem] rounded-[2rem] text-[0.8rem] text-themeRed font-bold ">
           <span className="">More Than Faster</span>
           <Image src={Cherry} alt="" width={40} height={25} />
         </div>
-        <div className="flex flex-col text-[4rem] font-bold">
-          <span>Be The Fastest</span>
-          <span>In Delivering</span>
-          <span>
-            Your <span className="text-themeRed">Pizza</span>
-          </span>
+        <div className="flex flex-row gap-2 lg:gap-0 lg:flex-col text-[2rem] lg:text-[4rem] font-bold">
+          <p className="lg:w-[500px] text-center lg:text-left">
+            Be The Fastest In Delivering Your{' '}
+            <span className="text-themeRed">Pizza</span>
+          </p>
         </div>
         <span className="w-[70%] text-themeRed font-[600]">
           Our Mission is to filling your tummy with delicious food and with free
           delivery
         </span>
-        <Button content={'Get Started'} className="px-[2.5rem] py-[1rem]" />
+        <Button
+          content={'Get Started'}
+          className=" px-4 py-2 lg:px-[2.5rem] lg:py-[1rem]"
+        />
       </div>
 
       {/* Rigth Side */}
-      <div className="relative">
-        <div className="w-[38rem] absolute top-[-5rem] left-[-5rem]">
+      <div className="relative lg:block hidden">
+        <div className="w-[38rem] hidden lg:block absolute top-[-5rem] left-[-5rem]">
           <Image src={HeroImage} alt="" layout="intrinsic" />
         </div>
 
         {/* Contact Us */}
         <div className="flex items-center font-[600] justify-center absolute w-[max-content] hover:cursor-pointer hover:scale-[1.1] p-[1rem] rounded-[5rem] top-[6rem] left-[-6rem] gap-[1rem] bg-white shadow-md text-themeRed ">
           <span>Contact Us</span>
-          <div className="bg-green-600 rounded-full w-[2.5rem] grid place-items-center h-[2.5rem]">
+          <div className="bg-green rounded-full w-[2rem] h-[2rem] lg:w-[2.5rem] grid place-items-center lg:h-[2.5rem]">
             <BsTelephone color="white" />
           </div>
         </div>

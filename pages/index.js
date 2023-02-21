@@ -1,16 +1,15 @@
-import React from "react"
-import Head from "next/head";
-import { motion } from "framer-motion"
-import Hero from "../components/Hero";
-import Services from "../components/Services";
-import Menu from "../components/Menu";
-import { client } from "../lib/client";
-
+import React from 'react';
+import Head from 'next/head';
+import { motion } from 'framer-motion';
+import Hero from '../components/Hero';
+import Services from '../components/Services';
+import Menu from '../components/Menu';
+import { client } from '../lib/client';
 
 export default function Home({ pizzas }) {
-
   return (
-    <motion.div initial={{ opacity: 0 }}
+    <motion.div
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
@@ -19,7 +18,7 @@ export default function Home({ pizzas }) {
         <meta name="description" content="Food delivery website" />
       </Head>
       {/* body */}
-      <main className="py-[1rem] px-[2rem]">
+      <main className="py-[1rem] px-[2rem] container mx-auto">
         <Hero />
         <Services />
         <Menu pizzas={pizzas} />
@@ -34,7 +33,7 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      pizzas
-    }
-  }
-}
+      pizzas,
+    },
+  };
+};

@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useDisclosure } from '@chakra-ui/react';
@@ -80,10 +80,9 @@ export default function Cart() {
 
   return (
     <div
-      className={`p-[2rem] grid grid-cols- gap-[2rem] ${
+      className={`p-[2rem] grid lg:grid-cols-2 gap-[2rem] ${
         isOpen && 'overflow-hidden'
       }`}
-      style={{ gridTemplateColumns: '2.2fr 1fr' }}
     >
       <div className="">
         <table
@@ -165,12 +164,12 @@ export default function Cart() {
         {!order && CartData.pizzas.length > 0 ? (
           <div className="flex gap-[1rem]">
             <Button
-              className=" text-[0.8rem] p-[0.6rem] bg-tranparent text-themeRed border-[2px] "
+              className=" text-[0.8rem] px-4 p-[0.6rem] bg-tranparent text-themeRed border-[2px] "
               content="Pay on Delivery"
               onClick={handleOnDelivery}
             />
             <Button
-              className={'text-[0.8rem] p-[0.6rem]'}
+              className={'text-[0.8rem] p-[0.6rem] px-4 '}
               content="Pay Now"
               onClick={handleCheckOut}
             />

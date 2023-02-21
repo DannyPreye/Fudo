@@ -13,17 +13,17 @@ export default ({ pizzas }) => {
         <span className="text-[2rem]">Make You Fall In Love</span>
       </div>
 
-      <div className="flex flex-wrap gap-y-[2rem] items-center justify-around">
+      <div className="flex flex-wrap gap-y-[2rem] items-center justify-center lg:justify-around">
         {/* Pizzas */}
         {pizzas.map((pizza, id) => {
           const src = urlFor(pizza.image).url();
           return (
             <div
               key={'d' + id}
-              className="flex flex-col items-start justify-center gap-[.5rem] text-[1.2rem] font-bold"
+              className="flex flex-col max-w-[22rem] w-full flex-wrap items-start justify-start gap-[.5rem] text-[1.2rem] font-bold"
             >
               <Link href={`./pizza/${pizza.slug.current}`}>
-                <div className="h-[16rem] w-[22rem] relative overflow-hidden rounded-[2rem] cursor-pointer">
+                <div className="h-[16rem] max-w-[22rem] flex-shrink-0 w-[100%]  relative overflow-hidden rounded-[2rem] cursor-pointer">
                   <Image
                     loader={() => src}
                     src={src}

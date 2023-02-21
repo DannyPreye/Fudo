@@ -72,8 +72,39 @@ export default () => {
         onClick={() => setOpenMenu((prev) => !prev)}
         className="text-[1.5rem] block lg:hidden cursor-pointer duration-1000"
       >
-        <MdRestaurantMenu className={openMenu ? 'block' : 'hidden'} />
         <MdMenuOpen className={openMenu ? 'hidden' : 'block'} />
+      </div>
+
+      <div
+        className={`fixed top-0 flex flex-col right-0 w-[80%] max-w-[400px] backdrop-blur-lg h-screen z-[3000] bg-[#fffffffb] overflow-hidden ${
+          openMenu ? 'w-[80%] max-w-[400px]' : 'w-0'
+        } duration-1000`}
+      >
+        <div className="flex-col flex items-center mt-[10%] gap-[3rem] ">
+          <MdRestaurantMenu
+            className="text-[2rem] text-red-700"
+            onClick={() => setOpenMenu(false)}
+          />
+
+          <Link href="/">
+            <a className="hover:text-themeRed font-[700] hover:text-[1.3rem]">
+              {' '}
+              Home
+            </a>
+          </Link>
+          <Link href="/">
+            <a className="hover:text-themeRed font-[700] hover:text-[1.3rem]">
+              {' '}
+              Menu
+            </a>
+          </Link>
+          <Link href="/">
+            <a className="hover:text-themeRed font-[700] hover:text-[1.3rem]">
+              {' '}
+              Contact
+            </a>
+          </Link>
+        </div>
       </div>
     </header>
   );

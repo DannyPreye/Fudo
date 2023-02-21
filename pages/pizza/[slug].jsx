@@ -37,12 +37,12 @@ export default ({ pizza }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      className="flex p-[2rem] gap-[5rem] mt-[3rem]"
+      className="flex p-[2rem] gap-[5rem] mt-[3rem] flex-wrap"
     >
       <Head>
         <title>{pizza.name}</title>
       </Head>
-      <div className="relative w-[40%] h-[25rem] overflow-hidden rounded-[2rem]">
+      <div className="relative w-full  lg:w-[40%] h-[25rem] overflow-hidden rounded-[2rem]">
         <Image
           loader={() => src}
           src={src}
@@ -55,7 +55,7 @@ export default ({ pizza }) => {
       </div>
 
       {/* Right side */}
-      <div className="flex-1 flex flex-col text-[2rem] font-bold  justify-between">
+      <div className="flex-1 gap-3 flex flex-col text-[2rem] font-bold  justify-between">
         <span>{pizza.name}</span>
         <span className="text-[1.2rem] font-normal text-gray">
           {pizza.details}
@@ -64,7 +64,7 @@ export default ({ pizza }) => {
           <span className="text-themeRed">$</span> {pizza.price[size]}
         </span>
         <div className="flex font-[600] gap-[3rem] text-[1.6rem]">
-          <span className="">Size</span>
+          <span className="text-[1rem] lg:text-[1.5rem]">Size</span>
           <div className="flex gap-[.6rem] font-normal text-themeRed text-[.8rem]">
             <div
               onClick={() => setSize(0)}
@@ -72,7 +72,8 @@ export default ({ pizza }) => {
                 size == 0 && 'bg-themeRed text-white cursor-pointer'
               }flex items-center justify-center py-[0.3rem] px-[1.5rem] border-[2px] border-themeRed rounded-[2rem]  hover:bg-themeRed hover:text-white cursor-pointer`}
             >
-              Small
+              <span className="lg:block hidden">Small</span>{' '}
+              <span className="lg:hidden block">S</span>
             </div>
             <div
               onClick={() => setSize(1)}
@@ -80,7 +81,8 @@ export default ({ pizza }) => {
                 size == 1 && 'bg-themeRed text-white cursor-pointer'
               }flex items-center justify-center py-[0.3rem] px-[1.5rem] border-[2px] border-themeRed rounded-[2rem]  hover:bg-themeRed hover:text-white cursor-pointer`}
             >
-              Medium
+              <span className="lg:block hidden">Medium</span>{' '}
+              <span className="lg:hidden block">M</span>
             </div>
             <div
               onClick={() => setSize(2)}
@@ -88,14 +90,15 @@ export default ({ pizza }) => {
                 size == 2 && 'bg-themeRed text-white cursor-pointer'
               }flex items-center justify-center py-[0.3rem] px-[1.5rem] border-[2px] border-themeRed rounded-[2rem]  hover:bg-themeRed hover:text-white cursor-pointer`}
             >
-              Large
+              <span className="lg:block hidden">Large</span>{' '}
+              <span className="lg:hidden block">L</span>
             </div>
           </div>
         </div>
 
         {/* Quatity counter */}
-        <div className="flex gap-[1rem]">
-          <span>Quantity</span>
+        <div className="flex gap-[1rem] items-center">
+          <span className="text-[1rem] lg:text-[1.5rem]">Quantity</span>
 
           <div className="flex items-center text-[1.6rem] font-[500] gap-[1rem]">
             <BsFillCaretLeftFill
